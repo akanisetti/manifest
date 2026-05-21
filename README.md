@@ -1,58 +1,139 @@
 # Release Notes
-## Android* 16 Base BSP Reference Release for Intel® Edge Platforms (Intel® Core™ i5 processor 14500T)
+## Android* 16 Base BSP Reference Release for Edge Platforms (supporting Intel® Core™ Processor (14th Gen))
+Engineering Candidate 2 Release
 
-
-Engineering Candidate 1 Release 
-
-February 2026
+May 2026
 
 # 1.0 Introduction
 
-This document provides release specific information about the Android* 16 base BSP reference stack release supported on Intel Edge Platforms (Intel® Core™ i5 processor 14500T) running Android* in a bare-metal OS environment.  
+This document provides release specific information about the Android* 16 Base BSP reference release supported on Intel® Core™ Processor (14th Gen))(code named Raptor Lake-S Refresh) running Android* 16 in a bare-metal OS environment.
 
-For instructions on building and loading Android* OS on the Intel® Core™ i5 processor 14500T for Edge Platforms, refer to the Android* 16 Base BSP Reference Release for Intel® Edge Platforms (Intel® Core™ i5 processor 14500T) Getting Started Guide (Published in [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/Getting_Started.md)).
+For instructions on building and loading Android* OS, refer to the Android* 16 Base BSP Reference Release for Edge Platforms (supporting Intel® Core™ Processor (14th Gen)) Getting Started Guide (Published in [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/Getting_Started.md)).
 
-    
-> **Note**
-> This release is intended for testing and evaluation on the platform
-only. It is not for production use.
+> **Note:**
+> This release is intended for testing and evaluation on the platform only. It is not for production use.
 
 # Terminology
 
-| Term                     | Description                                                     |
-|--------------------------|-----------------------------------------------------------------|
-| ADB                      | Android Debug Bridge                                            |
-| AOSP                     | Android Open Source Project                                     |
-| AVB                      | Android Verified Boot                                           |
-| BSP                      | Board Support Package                                           |
-| CODEC                    | Coder‑Decoder                                                   |
-| CRB                      | Customer Reference Board                                        |
-| DP                       | DisplayPort                                                     |
-| EC                       | Engineering Candidate                                           |
-| HDMI                     | High‑Definition Multimedia Interface                            |
-| IFWI                     | Integrated Firmware Image                                       |
-| ISV                      | Independent Software Vendor                                     |
-| NVME                     | Non‑Volatile Memory Express                                     |
-| RDC                      | Resource and Documentation Center                     |
-| RVP                      | Reference Validation Platform                     |
-
+| Term | Description |
+|------|-------------|
+| ADB | Android Debug Bridge |
+| AOSP | Android Open Source Project |
+| AVB | Android Verified Boot |
+| BSP | Board Support Package |
+| CODEC | Coder-Decoder |
+| CRB | Customer Reference Board |
+| DP | DisplayPort |
+| EC | Engineering Candidate |
+| HDMI | High-Definition Multimedia Interface |
+| IFWI | Integrated Firmware Image |
+| ISV | Independent Software Vendor |
+| NVME | Non-Volatile Memory Express |
+| RDC | Resource and Documentation Center |
+| RVP | Reference Validation Platform |
+| Raptor Lake-S R | Intel® Core™ Processor (14th Gen) |
+| TEE | Trusted Execution Environment |
 
 ## Intended Audience
 
-This document is intended for OSVs/ISVs interested in using Android\* on
-Intel® Core™ i5 processor 14500T for Edge Platforms to enable their
-customers.
+This document is intended for OSVs/ISVs interested in using Android* 16 Base BSP Reference Release for Edge Platforms (supporting Intel® Core™ Processor (14th Gen)) to enable their customers.
 
 ## Customer Support
 
 Contact your Intel representative for support or submit an issue to
 [premiersupport.intel.com](http://premiersupport.intel.com/).
 
+
+# 2.0 Best-Known Configuration
+
+This section shows the compatible hardware and software configuration for this release.
+
+## Hardware Configuration
+
+### RVP: SR14 Raptor Lake-S RVP
+### Processors
+      Intel® Core™ i3 processor 14100T
+      Intel® Core™ i5 processor 14500T
+      Intel® Core™ i7 processor 14700T
+
+
+# Release Information
+
+This section contains general release information for BSP.
+
+### Engineering Candidate 2 (EC2) - Current
+### [Engineering Candidate 1 (EC1)](https://github.com/edge-aosp-bsp/manifest/tree/BM_BSP_2026_Q1_V1_A16)
+
+---
+
+
+## Engineering Candidate 2 (EC2)
+
+## Software Configuration
+1. EC2 Manifest File: [GitHub - BM_BSP_2026_Q2_V1_A16.xml](https://github.com/edge-aosp-bsp/manifest/blob/master/stable-build/A16/BM_BSP_2026_Q2_V1_A16.xml)
+2. UEFI Reference BIOS:
+   - Release Notes & Package [865275](https://www.intel.com/content/www/us/en/secure/content-details/865275/content-details.html)
+
+## Release version
+| Type | Description |
+|------|-------------|
+| Release Version | Engineering Candidate 2 (EC2) |
+| Build Target | caas-userdebug, caas-user |
+| Tested Hardware | SR14 Raptor Lake-S DDR5 UDIMM 1DPC RVP and Intel® Core™ Processors (14th Gen) |
+| Android Version | android-16.0.0 |
+| Kernel Version | 6.12.77 |
+
+## Product Features
+#### List of Product Features
+
+| Feature Category | Feature | Availability |
+|------------------|---------|--------------|
+| Connectivity | Intel Wi-Fi* 6 and 7 | Yes |
+| Connectivity | Bluetooth® 5.3 and 5.4 | Yes |
+| ADB | ADB over Ethernet | Yes |
+| Media | Video playback | Yes |
+| Display | eDP | Yes |
+| Display | DP over USB Type-C | Yes |
+| Display | Dual Display | Yes |
+| Audio | Audio - Onboard CODEC | Yes |
+| Audio | Audio - USB 3.1 | Yes |
+| Audio | Audio - USB-C | Yes |
+| Audio | Audio - Bluetooth® | Yes |
+| USB | USB-C | Yes |
+| USB | USB 3.2 | Yes |
+| USB | USB 2.0 | Yes |
+| Ethernet | Ethernet | Yes |
+| I/O | USB | Yes |
+| I/O | Serial Port | Yes |
+| Storage | NVMe | Yes |
+| Touch | eDP Touch | Yes |
+| Camera | USB | Yes |
+| Boot | Fast Boot / Secure Boot / AVB | Yes |
+| OTA | OTA Enabled | Yes |
+| Location | Static location service via API | Yes |
+| Security | Security-Trusty-TEE | Yes |
+
+## Closed Issues
+| Issue ID | Feature |
+|----------|---------|
+| NIACP3-1214 | on-screen virtual keyboard doesn't work |
+| NIACP3-1223 | Sound is broken with built-in speakers |
+| NIACP3-1149 | Display brightness control is not functional on eDP   |
+
+## Known Issues
+| Issue ID | Feature |
+|----------|---------|
+| NIACP3-1311 | Device goes offline during CTS execution and gets stuck in Android UI intermittently|
+| NIACP3-1168 | Error while trying to read reboot reason while Android boots up |
+
+> **Note:**
+> OTA feature validated on userdebug variant only in a pre-production validation environment.
+
 ## Reference Documents
 
 | Documentation on GitHub | Document No./Location |
 |---------|------------------------|
-|Android* 16 Base BSP Reference Release for Intel® Edge Platforms (Intel® Core™ i5 processor 14500T) - Getting Started Guide |  [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/Getting_Started.md) |
+|Android* 16 Base BSP Reference Release for Edge Platforms (supporting Intel® Core™ Processor (14th Gen)) - Getting Started Guide |  [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/Getting_Started.md) |
 | Raptor Lake‑S Refresh Android Manifest File | [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/stable-build/A16/BM_BSP_2026_Q1_v1_A16.xml) |
 
 Log in to the Resource and Documentation Center
@@ -60,92 +141,13 @@ Log in to the Resource and Documentation Center
 to search for and download the document numbers listed in the following
 table. Contact your Intel field representative for access.
 
-> **Note**
+> **Note:**
 > Third-party links are provided as a reference only. Intel does not control or audit third-party benchmark data or the websites referenced in this document. You should visit the referenced website and confirm whether the referenced data are accurate. 
 
 
 | Documentation on Intel RDC | Document No./Location |
 |---------|------------------------|
 | 13th Gen Intel® Core™ Processors and Intel® Core™ Processors (14th Gen) (Code named Raptor Lake‑S/S Refresh) for Edge Platforms Reference UEFI BIOS/IFWI Version 6311_00 – IFWI Release Notes & Package |  [865275](https://www.intel.com/content/www/us/en/secure/content-details/865275/content-details.html) |
-
-
-
-# 2.0 Best-Known Configuration
-
-This section shows the compatible hardware and software configuration for this release.  
-
-
-## Hardware Configuration
-
-1. **RVP**: SR14 Raptor Lake‑S RVP
-
-2. **Silicon**: QS / PRQ Silicon
-   - Intel® Core™ i5 processor 14500T
-
----
-
-## Software Configuration
-
-1. EC1 Manifest File: [GitHub - BM_BSP_2026_Q1_V1_A16.xml](https://github.com/edge-aosp-bsp/manifest/blob/master/stable-build/A16/BM_BSP_2026_Q1_v1_A16.xml)
-
-2. UEFI Reference BIOS:
-   - Release Notes & Package [865275](https://www.intel.com/content/www/us/en/secure/content-details/865275/content-details.html)
-
-
-# 3.0	Components
-
-This section contains general release information for BSP.
-
-
-## Release Information
-
-| Type             | Description                                                                 |
-|------------------|-----------------------------------------------------------------------------|
-| Release Version  | Engineering Candidate 1 (EC1)                                               |
-| Build Target     | caas-userdebug<br>caas-user                                                 |
-| Tested Hardware  | SR14 Raptor Lake‑S DDR5 UDIMM 1DPC RVP &<br>Q37X Intel® Core™ i5 processor 14500T |
-| Android Version  | android‑16.0.0                                                              |
-| Kernel Version   | 6.12.63                                                                     |
-
-## Product Features
-
-## List of Product Features
-
-| Feature Category | Feature                         | Availability |
-|------------------|----------------------------------|--------------|
-| Connectivity     | Intel Wi‑Fi* 6 & 7    | Yes          |
-|                  | Bluetooth® 5.3 & 5.4                      | Yes          |
-| ADB              | ADB over Ethernet               | Yes          |
-| Media            | Video playback                  | Yes          |
-| Display          | eDP                            | Yes          |
-|                  | DP over USB‑Type C         | Yes          | 
-|                  | Dual Display                | Yes          |
-| Audio            | Audio – Onboard CODEC           | Yes          |
-|                  | Audio – USB 3.1                 | Yes          |
-|                  | Audio – USB‑C                   | Yes          |
-|                  | Audio – Bluetooth®              | Yes          |
-| USB              | USB‑C                           | Yes          |
-|                  | USB 3.2                         | Yes          |
-|                  | USB 2.0                         | Yes          |
-| Ethernet         | Ethernet                        | Yes          |
-| I/O         | USB                        | Yes          |
-|          | Serial Port                       | Yes          |
-| Storage          | NVMe                            | Yes          |
-| Touch            | eDP Touch              | Yes          |
-| Camera           | USB                             | Yes          |
-| Boot           | Fast Boot / Secure Boot / AVB                             | Yes          |
-| OTA           | OTA Enabled                             | Yes          |
-
-
-# Known Issues
-
-| Issue ID | Feature                         |
-|------------------|----------------------------------|
-|NIACP3-1149 | Display brightness control is not functional on eDP   |     
-|NIACP3-1168 | Error while trying to read the reboot reason while Android boots UP                 |  
-|NIACP3-1148 |Screen flicker observed on Type-C touch display| 
-
-
 
 # Disclaimer
 
@@ -185,12 +187,3 @@ under license.
 © Intel Corporation. Intel, the Intel logo, and other Intel marks are
 trademarks of Intel Corporation or its subsidiaries. Other names and
 brands may be claimed as the property of others.
-
-
-
-
-
-
-
-
-

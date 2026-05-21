@@ -1,14 +1,13 @@
 # Getting Started Guide
-## Android* 16 Base BSP Reference Release for Intel® Edge Platforms (Intel® Core™ i5 processor 14500T)
+## Android* 16 Base BSP Reference Release for Edge Platforms (supporting Intel® Core™ Processor (14th Gen))
+Engineering Candidate 2 Release
 
-Engineering Candidate 1 Release
-
-February 2026
+May 2026
 
 # Introduction
 
 This document provides instructions for building and loading Android\*
-16 on Intel® Core™ i5 processor 14500T for Edge Platforms.
+16 on Intel® Core™ Processor (14th Gen)(code named Raptor Lake-S Refresh) for Edge Platforms.
     
 > **Note:**
 > This release is intended for testing and evaluation on the platform
@@ -18,7 +17,7 @@ You are recommended to review the release information before proceeding
 with this Getting Started Guide. For release information, notes, and
 references, refer to the following documents:
 
-* Android* 16 Base BSP Reference Release for Intel® Edge Platforms (Intel® Core™ i5 processor 14500T) Release Notes (Published in [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/README.md)) 
+* Android* 16 Base BSP Reference Release for Edge Platforms (supporting Intel® Core™ Processor (14th Gen)) Release Notes (Published in [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/README.md)) 
 
 # Terminology
 
@@ -27,7 +26,7 @@ references, refer to the following documents:
 | adb             | Android Debug Bridge                                                         |
 | AOSP            | Android Open-Source Project                                                  |
 | BIOS            | Basic Input/Output System                                                    |
-| BM              | BareMetal refers to an Android system that runs without a hypervisor.        |
+| BM              | Bare Metal refers to an Android system that runs without a hypervisor.        |
 | BSP             | Board Support Package                                                        |
 | CRB             | Customer Reference Board                                                     |
 | EC              | Engineering Candidate                                                        |
@@ -41,7 +40,7 @@ references, refer to the following documents:
 | NVME            | Non-Volatile Memory Express (NVMe)                                           |
 | OS              | Operating System                                                             |
 | PCH‑IO          | Platform Controller Hub — I/O Configuration                                  |
-| Raptor Lake-S   | Intel® Core™ Processors (14th Gen) for Edge Platforms (Refresh)              |
+| Raptor Lake-S R  | Intel® Core™ Processors (14th Gen)             |
 | RDC             | Resource and Documentation Center                                            |
 | RVP             | Reference Validation Platform                                                |
 | SATA            | Serial ATA (Serial Advanced Technology Attachment)                           |
@@ -55,36 +54,12 @@ references, refer to the following documents:
 
 ## Intended Audience
 
-This document is intended for OSVs/ISVs interested in using Android\* on
-Intel® Core™ Processors (14th Gen) for Edge Platforms to enable their
-customers.
+This document is intended for OSVs/ISVs interested in using Android* 16 Base BSP Reference Release for Edge Platforms (supporting Intel® Core™ Processor (14th Gen)) to enable their customers.
 
 ## Customer Support
 
-Contact your Intel representative for support or submit an issue to
+Contact your Intel representative for support or submit issues to
 [premiersupport.intel.com](http://premiersupport.intel.com/).
-
-## Reference Documents
-
-| Documentation on GitHub | Document No./Location |
-|---------|------------------------|
-| Android* 16 Base BSP Reference Release for Intel® Edge Platforms (Intel® Core™ i5 processor 14500T) Release Notes |  [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/README.md) |
-| Raptor Lake‑S Refresh Android Manifest File | [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/stable-build/A16/BM_BSP_2026_Q1_v1_A16.xml) |
-
-
-Log in to the Resource and Documentation Center
-([rdc.intel.com](https://www.intel.com/content/www/us/en/resources-documentation/developer.html))
-to search for and download the document numbers listed in the following
-table. Contact your Intel field representative for access.
-
-> **Note:**
-> Third-party links are provided as a reference only. Intel does not control or audit third-party benchmark data or the websites referenced in this document. You should visit the referenced website and confirm whether the referenced data are accurate. 
-
-
-| Documentation on Intel RDC | Document No./Location |
-|---------|------------------------|
-| 13th Gen Intel® Core™ Processors and Intel® Core™ Processors (14th Gen) (Code named Raptor Lake‑S/S Refresh) for Edge Platforms Reference UEFI BIOS/IFWI Version 6311_00 – IFWI Release Notes & Package |  [865275](https://www.intel.com/content/www/us/en/secure/content-details/865275/content-details.html) |
-
 
 
 
@@ -92,7 +67,7 @@ table. Contact your Intel field representative for access.
 
 Android\* BSP is a reference implementation used for testing hardware
 feature enablement. This document provides step-by-step instructions for
-building the Android BareMetal image and installing it on the Intel®
+building the Android Bare Metal image and installing it on the Intel®
 Core™ Processors (14th Gen) platform.
 
 ## Requirement
@@ -132,7 +107,7 @@ repo tool makes it easy to work with those repositories. Refer to the
 Environment](#git-setup-for-build-environment) if you need
 to set up Git on your build machine.
 
-1.  Create a local bin/ directory, download the repo tool to thatdirectory, and make the binary executable with the following commands:
+1.  Create a local bin/ directory, download the repo tool to that directory, and make the binary executable with the following commands:
 
 ```bash
 mkdir -p ~/bin
@@ -198,14 +173,15 @@ sudo -E apt install …
 This section outlines the procedures for downloading the Android source
 code using the specified manifest and for building the Android BSP.
 
-The manifest for this release, **BM_BSP_2026_Q1_v1_A16.xml,** is
-available for download from
-[GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/stable-build/A16/BM_BSP_2026_Q1_v1_A16.xml) directory.
+The manifest for this release is available for download from
+[GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/stable-build/A16/) directory.
 
-1.  Download the manifest for this release: **BM_BSP_2026_Q1_v1_A16.xml**
+The manifest for this release is **BM_BSP_2026_Q2_v1_A16.xml**
+
+1.  Download the manifest: **BM_BSP_2026_Q2_v1_A16.xml**
 
 ```bash 
-mv BM_BSP_2026_Q1_v1_A16.xml ~/.
+mv BM_BSP_2026_Q2_v1_A16.xml ~/.
 ```
 2.  Create a working directory.
 ```bash 
@@ -219,9 +195,9 @@ repo init -u https://github.com/edge-aosp-bsp/manifest.git
 
 # copy the manifest to .repo/manifests
 mkdir .repo/manifests
-cp ~/BM_BSP_2026_Q1_v1_A16.xml .repo/manifests/.
+cp ~/BM_BSP_2026_Q2_v1_A16.xml .repo/manifests/.
 
-repo init -u https://github.com/edge-aosp-bsp/manifest.git -m BM_BSP_2026_Q1_v1_A16.xml
+repo init -u https://github.com/edge-aosp-bsp/manifest.git -m BM_BSP_2026_Q2_v1_A16.xml
 
 # Sync the repositories
 repo sync -c --force-sync -j16
@@ -254,7 +230,7 @@ find out -name *.tar.gz
 out/target/product/caas/caas-releasefile-userdebug.iso.tar.gz
 out/target/product/caas/caas-releasefiles-userdebug.tar.gz
 
-# Note:	The file is available in this path: 
+# Note:	The files are available at:
 # ~/rpl-android-bm/out/target/product/caas/
 ```
 
@@ -282,7 +258,7 @@ BIOS menu.
 | OnBoard NIC              | Intel Advanced Menu → PCH‑IO configuration → EFI Network             | OnBoard NIC |
 
 
-> **Note**
+> **Note:**
 > The steps may vary depending on the BIOS.
 
 ## Flash Image to USB Drive
@@ -368,8 +344,10 @@ Git must be set up on your build machine to run repo init. Use the command below
 
 \# Setup git config with your name and email ID. Add proxy settings if behind a firewall  
 
+```bash
 cd /home/$USER  
 vi /home/$USER/.gitconfig  
+```
 
 \# Append below lines to .gitconfig file  
 ```
@@ -383,6 +361,92 @@ vi /home/$USER/.gitconfig
 ```
 Create a symbolic link for Python 3 in the ‘/usr/bin’ directory.
 sudo ln -sf /usr/bin/python3 /usr/bin/python
+
+# Developer Guide for Static Location Service
+
+This section provides guidance for application developers to read or write the device's static configured location.
+
+## Location Provider
+
+The Location provider name to be used in LocationManager API calls while reading the location:
+
+```java
+"static"
+```
+
+---
+
+## Read the Location
+
+It can be used by applications to determine the location of the device.
+
+### Required Android Permission
+
+```xml
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+```
+
+### Sample Code
+
+```java
+LocationManager lm = (LocationManager)getSystemService(LocationManager.class);
+
+Location location = lm.getLastKnownLocation("static");
+
+if (location != null) {
+
+    double lat = location.getLatitude();
+    double lon = location.getLongitude();
+
+    Log.d("STATIC_PROVIDER", "Lat=" + lat + " Lon=" + lon);
+}
+```
+
+---
+
+## Write / Update the Location
+
+It is used by manageability applications to statically configure the device location at the time of provisioning.
+
+> Supported only for privileged/system applications.
+
+### Required Permission
+
+```xml
+<uses-permission android:name="android.permission.LOCATION_HARDWARE" />
+```
+
+### Sample Code
+
+```java
+IBinder binder = ServiceManager.getService("location_control");
+
+ILocationControlService service = ILocationControlService.Stub.asInterface(binder);
+
+service.setHalLocation(12.9716, 77.5946);
+```
+
+---
+## Reference Documents
+
+| Documentation on GitHub | Document No./Location |
+|---------|------------------------|
+| Android* 16 Base BSP Reference Release for Intel® Edge Platforms (supporting Intel® Core™ Processor (14th Gen)) Release Notes |  [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/README.md) |
+| Raptor Lake‑S Refresh Android Manifest File | [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/stable-build/A16/) |
+
+Log in to the Resource and Documentation Center
+([rdc.intel.com](https://www.intel.com/content/www/us/en/resources-documentation/developer.html))
+to search for and download the document numbers listed in the following
+table. Contact your Intel field representative for access.
+
+> **Note:**
+> Third-party links are provided as a reference only. Intel does not control or audit third-party benchmark data or the websites referenced in this document. You should visit the referenced website and confirm whether the referenced data are accurate. 
+
+
+| Documentation on Intel RDC | Document No./Location |
+|---------|------------------------|
+| 13th Gen Intel® Core™ Processors and Intel® Core™ Processors (14th Gen) (Code named Raptor Lake‑S/S Refresh) for Edge Platforms Reference UEFI BIOS/IFWI Version 6311_00 – IFWI Release Notes & Package |  [865275](https://www.intel.com/content/www/us/en/secure/content-details/865275/content-details.html) |
 
 
 # Disclaimer
@@ -423,12 +487,3 @@ under license.
 © Intel Corporation. Intel, the Intel logo, and other Intel marks are
 trademarks of Intel Corporation or its subsidiaries. Other names and
 brands may be claimed as the property of others.
-
-
-
-
-
-
-
-
-
