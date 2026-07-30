@@ -1,17 +1,17 @@
 # Release Notes
 ## Android* 16 Base BSP Reference Release for Edge Platforms (supporting Intel® Core™ Processor (14th Gen))
-Engineering Candidate 2 Release
+Release 1.0 (PV release)
 
-May 2026
+July 2026
 
 # 1.0 Introduction
 
 This document provides release specific information about the Android* 16 Base BSP reference release supported on Intel® Core™ Processor (14th Gen))(code named Raptor Lake-S Refresh) running Android* 16 in a bare-metal OS environment.
 
-For instructions on building and loading Android* OS, refer to the Android* 16 Base BSP Reference Release for Edge Platforms (supporting Intel® Core™ Processor (14th Gen)) Getting Started Guide (Published in [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/Getting_Started.md)).
+>**Note:**
+>The versions of the Android Common Kernel and AOSP open-source software components referenced in this release represent the Intel-validated baseline for the platform. Customers are encouraged to evaluate and integrate updates to these open-source components as they become available from the open-source community.
 
-> **Note:**
-> This release is intended for testing and evaluation on the platform only. It is not for production use.
+For instructions on building and loading Android* OS, refer to the Android* 16 Base BSP Reference Release for Edge Platforms (supporting Intel® Core™ Processor (14th Gen)) Getting Started Guide (Published in [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/Getting_Started.md)).
 
 # Terminology
 
@@ -28,7 +28,7 @@ For instructions on building and loading Android* OS, refer to the Android* 16 B
 | HDMI | High-Definition Multimedia Interface |
 | IFWI | Integrated Firmware Image |
 | ISV | Independent Software Vendor |
-| NVME | Non-Volatile Memory Express |
+| NVMe | Non-Volatile Memory Express |
 | RDC | Resource and Documentation Center |
 | RVP | Reference Validation Platform |
 | Raptor Lake-S R | Intel® Core™ Processor (14th Gen) |
@@ -61,27 +61,28 @@ This section shows the compatible hardware and software configuration for this r
 
 This section contains general release information for BSP.
 
-### Engineering Candidate 2 (EC2) - Current
+### Production Version (PV) - Current
+### [Engineering Candidate 2 (EC2)](https://github.com/edge-aosp-bsp/manifest/tree/BM_BSP_2026_Q2_V1_A16)
 ### [Engineering Candidate 1 (EC1)](https://github.com/edge-aosp-bsp/manifest/tree/BM_BSP_2026_Q1_V1_A16)
 
 ---
 
 
-## Engineering Candidate 2 (EC2)
+## Production Version (PV)
 
 ## Software Configuration
-1. EC2 Manifest File: [GitHub - BM_BSP_2026_Q2_V1_A16.xml](https://github.com/edge-aosp-bsp/manifest/blob/master/stable-build/A16/BM_BSP_2026_Q2_V1_A16.xml)
+1. PV Manifest File: [GitHub - BM_BSP_2026_Q3_V1_A16.xml](https://github.com/edge-aosp-bsp/manifest/blob/master/stable-build/A16/BM_BSP_2026_Q3_V1_A16.xml)
 2. UEFI Reference BIOS:
-   - Release Notes & Package [865275](https://www.intel.com/content/www/us/en/secure/content-details/865275/content-details.html)
+   - Release Notes & Package [852225](https://www.intel.com/content/www/us/en/secure/design/confidential/software-kits/kit-details.html?kitId=852225)
 
-## Release version
+## Release Version
 | Type | Description |
 |------|-------------|
-| Release Version | Engineering Candidate 2 (EC2) |
+| Release Version | Production Version (PV) |
 | Build Target | caas-userdebug, caas-user |
-| Tested Hardware | SR14 Raptor Lake-S DDR5 UDIMM 1DPC RVP and Intel® Core™ Processors (14th Gen) |
-| Android Version | android-16.0.0 |
-| Kernel Version | 6.12.77 |
+| Tested Hardware | SR14 Raptor Lake-S DDR5 UDIMM 1DPC RVP and Intel® Core™ Processor (14th Gen) |
+| Android Version | android-16 |
+| Kernel Version | 6.12.89 |
 
 ## Product Features
 #### List of Product Features
@@ -116,25 +117,15 @@ This section contains general release information for BSP.
 ## Closed Issues
 | Issue ID | Feature |
 |----------|---------|
-| NIACP3-1214 | on-screen virtual keyboard doesn't work |
-| NIACP3-1223 | Sound is broken with built-in speakers |
-| NIACP3-1149 | Display brightness control is not functional on eDP   |
-
-## Known Issues
-| Issue ID | Feature |
-|----------|---------|
 | NIACP3-1311 | Device goes offline during CTS execution and gets stuck in Android UI intermittently|
 | NIACP3-1168 | Error while trying to read reboot reason while Android boots up |
-
-> **Note:**
-> OTA feature validated on userdebug variant only in a pre-production validation environment.
 
 ## Reference Documents
 
 | Documentation on GitHub | Document No./Location |
 |---------|------------------------|
 |Android* 16 Base BSP Reference Release for Edge Platforms (supporting Intel® Core™ Processor (14th Gen)) - Getting Started Guide |  [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/Getting_Started.md) |
-| Raptor Lake‑S Refresh Android Manifest File | [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/stable-build/A16/BM_BSP_2026_Q1_v1_A16.xml) |
+| Raptor Lake‑S Refresh Android Manifest File | [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/stable-build/A16/BM_BSP_2026_Q3_v1_A16.xml) |
 
 Log in to the Resource and Documentation Center
 ([rdc.intel.com](https://www.intel.com/content/www/us/en/resources-documentation/developer.html))
@@ -147,7 +138,7 @@ table. Contact your Intel field representative for access.
 
 | Documentation on Intel RDC | Document No./Location |
 |---------|------------------------|
-| 13th Gen Intel® Core™ Processors and Intel® Core™ Processors (14th Gen) (Code named Raptor Lake‑S/S Refresh) for Edge Platforms Reference UEFI BIOS/IFWI Version 6311_00 – IFWI Release Notes & Package |  [865275](https://www.intel.com/content/www/us/en/secure/content-details/865275/content-details.html) |
+| 13th Gen Intel® Core™ Processor and Intel® Core™ Processor (14th Gen) (Code named Raptor Lake‑S/S Refresh) for Edge Platforms Reference UEFI BIOS/IFWI IPU 2026.3 (ver 7116.51) |  [852225](https://www.intel.com/content/www/us/en/secure/design/confidential/software-kits/kit-details.html?kitId=852225) |
 
 # Disclaimer
 
@@ -175,8 +166,8 @@ Center](https://www.intel.com/content/www/us/en/resources-documentation/develope
 
 Intel technologies\' features and benefits depend on system
 configuration and may require enabled hardware, software or service
-activation. Performance varies depending on system configuration. No
-product or component can be absolutely secure. Check with your system
+activation. Performance varies depending on system configuration. No
+product or component can be absolutely secure. Check with your system
 manufacturer or retailer or learn more at
 [intel.com](http://intel.com/).
 
@@ -187,3 +178,4 @@ under license.
 © Intel Corporation. Intel, the Intel logo, and other Intel marks are
 trademarks of Intel Corporation or its subsidiaries. Other names and
 brands may be claimed as the property of others.
+
