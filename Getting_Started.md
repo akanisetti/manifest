@@ -1,17 +1,15 @@
 # Getting Started Guide
 ## Android* 16 Base BSP Reference Release for Edge Platforms (supporting Intel® Core™ Processor (14th Gen))
-Engineering Candidate 2 Release
+Release 1.0 (PV release)
 
-May 2026
+July 2026
 
 # Introduction
 
-This document provides instructions for building and loading Android\*
-16 on Intel® Core™ Processor (14th Gen)(code named Raptor Lake-S Refresh) for Edge Platforms.
-    
-> **Note:**
-> This release is intended for testing and evaluation on the platform
-only. It is not for production use.
+This document provides instructions for building and loading Android\* 16 on Intel® Core™ Processor (14th Gen)(code named Raptor Lake-S Refresh) for Edge Platforms.
+
+>**Note:**
+>The versions of the Android Common Kernel and AOSP open-source software components referenced in this release represent the Intel-validated baseline for the platform. Customers are encouraged to evaluate and integrate updates to these open-source components as they become available from the open-source community.
 
 You are recommended to review the release information before proceeding
 with this Getting Started Guide. For release information, notes, and
@@ -21,35 +19,36 @@ references, refer to the following documents:
 
 # Terminology
 
-| Term            | Description                                                                 |
-|-----------------|-----------------------------------------------------------------------------|
-| adb             | Android Debug Bridge                                                         |
-| AOSP            | Android Open-Source Project                                                  |
-| BIOS            | Basic Input/Output System                                                    |
-| BM              | Bare Metal refers to an Android system that runs without a hypervisor.        |
-| BSP             | Board Support Package                                                        |
-| CRB             | Customer Reference Board                                                     |
-| EC              | Engineering Candidate                                                        |
-| GIT             | Git — Version control system                                                 |
-| HDA             | High-Definition Audio                                                        |
-| IFWI            | Intel Firmware Interface                                                     |
-| ISO             | ISO image — Disk image format                                                |
-| ISV             | Independent Software Vendor                                                  |
-| LTS             | Long-Term Support                                                            |
-| NIC             | Network Interface Card                                                       |
-| NVME            | Non-Volatile Memory Express (NVMe)                                           |
-| OS              | Operating System                                                             |
-| PCH‑IO          | Platform Controller Hub — I/O Configuration                                  |
-| Raptor Lake-S R  | Intel® Core™ Processors (14th Gen)             |
-| RDC             | Resource and Documentation Center                                            |
-| RVP             | Reference Validation Platform                                                |
-| SATA            | Serial ATA (Serial Advanced Technology Attachment)                           |
-| SELinux         | Security-Enhanced Linux                                                      |
-| TCC             | Intel® Time Coordinated Computing                                            |
-| UEFI            | Unified Extensible Firmware Interface                                        |
-| USB             | Universal Serial Bus                                                         |
-| VMX             | Virtual Machine Extensions                                                   |
-| VT-d            | Virtualization Technology for Directed I/O                                   |
+| Term            | Description                                                            |
+| --------------- | ---------------------------------------------------------------------- |
+| adb             | Android Debug Bridge                                                   |
+| AOSP            | Android Open-Source Project                                            |
+| BIOS            | Basic Input/Output System                                              |
+| BM              | Bare Metal refers to an Android system that runs without a hypervisor. |
+| BSP             | Board Support Package                                                  |
+| CRB             | Customer Reference Board                                               |
+| EC              | Engineering Candidate                                                  |
+| GIT             | Git — Version control system                                           |
+| HDA             | High-Definition Audio                                                  |
+| IFWI            | Intel Firmware Interface                                               |
+| ISO             | ISO image — Disk image format                                          |
+| ISV             | Independent Software Vendor                                            |
+| LTS             | Long-Term Support                                                      |
+| NIC             | Network Interface Card                                                 |
+| NVMe            | Non-Volatile Memory Express                                            |
+| OS              | Operating System                                                       |
+| PCH‑IO          | Platform Controller Hub — I/O Configuration                            |
+| PV              | Production Version                                                     |
+| Raptor Lake-S R | Intel® Core™ Processor (14th Gen)                                      |
+| RDC             | Resource and Documentation Center                                      |
+| RVP             | Reference Validation Platform                                          |
+| SATA            | Serial ATA (Serial Advanced Technology Attachment)                     |
+| SELinux         | Security-Enhanced Linux                                                |
+| TCC             | Intel® Time Coordinated Computing                                      |
+| UEFI            | Unified Extensible Firmware Interface                                  |
+| USB             | Universal Serial Bus                                                   |
+| VMX             | Virtual Machine Extensions                                             |
+| VT-d            | Virtualization Technology for Directed I/O                             |
 
 
 ## Intended Audience
@@ -68,7 +67,7 @@ Contact your Intel representative for support or submit issues to
 Android\* BSP is a reference implementation used for testing hardware
 feature enablement. This document provides step-by-step instructions for
 building the Android Bare Metal image and installing it on the Intel®
-Core™ Processors (14th Gen) platform.
+Core™ Processor (14th Gen) platform.
 
 ## Requirement
 
@@ -81,16 +80,11 @@ released by Google.
 workstation is required to check out the source code and store build
 artifacts.
 
-### **Intel® Core™ Processors (14th Gen)** for Edge Platforms 
-* Contains the latest supported **Intel® Core™ Processors (14th Gen) for Edge
-Platforms** silicon.
+### **Intel® Core™ Processor (14th Gen)** for Edge Platforms 
+* Contains the latest supported **Intel® Core™ Processor (14th Gen) for Edge Platforms** silicon.
 * A minimum of **500 GB of storage**. 
-* Flashed with the latest IFWI. Refer to the Intel® Core™ Processors (14th Gen) for
-Edge Platforms Reference UEFI BIOS/IFWI ([Document Number:
-865275](https://www.intel.com/content/www/us/en/secure/content-details/865275/content-details.html)) for the IFWI details.
-
-
-* **High-speed network** connectivity
+* Flashed with the latest IFWI. Refer to the 13th Gen Intel® Core™ Desktop Processors (Code named Raptor Lake-S) and Intel® Core™ Processor (14th Gen) (Code named Raptor Lake-S Refresh) for Edge Platforms Reference UEFI BIOS/IFWI (ver. 7117_51) [Document Number: 852225](https://www.intel.com/content/www/us/en/secure/design/confidential/software-kits/kit-details.html?kitId=852225) for the IFWI details.
+* **High-speed network** connectivity.
 
 ### Notes:
 
@@ -103,9 +97,7 @@ Edge Platforms Reference UEFI BIOS/IFWI ([Document Number:
 
 The Android source code consists of multiple Git\* repositories. The
 repo tool makes it easy to work with those repositories. Refer to the
-[Git Setup for Build
-Environment](#git-setup-for-build-environment) if you need
-to set up Git on your build machine.
+[Git Setup for Build Environment](#git-setup-for-build-environment) if you need to set up Git on your build machine.
 
 1.  Create a local bin/ directory, download the repo tool to that directory, and make the binary executable with the following commands:
 
@@ -155,7 +147,7 @@ sudo apt install -y \
 
 > **Note:**
 > If you encounter network connectivity issues, you can use the following commands
-> to bypass Intel’s network proxy settings. To disable proxy settings:
+> to bypass using network proxy settings. To disable proxy settings:
 
 ```bash
 unset no_proxy
@@ -170,18 +162,16 @@ sudo -E apt install …
 
 ## Download and Build the Source Code
 
-This section outlines the procedures for downloading the Android source
-code using the specified manifest and for building the Android BSP.
+This section outlines the procedures for downloading the Android source code using the specified manifest and for building the Android BSP.
 
-The manifest for this release is available for download from
-[GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/stable-build/A16/) directory.
+The manifest for this release is available for download from [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/stable-build/A16/) directory.
 
-The manifest for this release is **BM_BSP_2026_Q2_v1_A16.xml**
+The manifest for this release is **BM_BSP_2026_Q3_v1_A16.xml**
 
-1.  Download the manifest: **BM_BSP_2026_Q2_v1_A16.xml**
+1.  Download the manifest: **BM_BSP_2026_Q3_v1_A16.xml**
 
 ```bash 
-mv BM_BSP_2026_Q2_v1_A16.xml ~/.
+mv BM_BSP_2026_Q3_v1_A16.xml ~/.
 ```
 2.  Create a working directory.
 ```bash 
@@ -195,9 +185,9 @@ repo init -u https://github.com/edge-aosp-bsp/manifest.git
 
 # copy the manifest to .repo/manifests
 mkdir .repo/manifests
-cp ~/BM_BSP_2026_Q2_v1_A16.xml .repo/manifests/.
+cp ~/BM_BSP_2026_Q3_v1_A16.xml .repo/manifests/.
 
-repo init -u https://github.com/edge-aosp-bsp/manifest.git -m BM_BSP_2026_Q2_v1_A16.xml
+repo init -u https://github.com/edge-aosp-bsp/manifest.git -m BM_BSP_2026_Q3_v1_A16.xml
 
 # Sync the repositories
 repo sync -c --force-sync -j16
@@ -215,6 +205,19 @@ repo forall -c git lfs pull
 
 ## Build Instructions
 
+### Integrate the Trusty Binary
+The Trusty binary (`lk.bin`) must be built separately and placed in the following directory:
+
+```
+cp lk.bin ~/rpl-android-bm/vendor/intel/fw/trusty-release-binaries/
+```
+
+This is a prerequisite before proceeding with `Building the Android Image`.
+
+> **Note:**
+> Contact your Intel representative to gain access to the Trusty source code and build procedure.
+
+### Building the Android Image
 Build the image from the source code based on the instructions below.
 ```bash
 # Prepare build environment
@@ -236,26 +239,23 @@ out/target/product/caas/caas-releasefiles-userdebug.tar.gz
 
 # Android\* Image Flashing and Boot up
 
-This section describes the steps required to configure the BIOS and
-prepare the USB drive for flashing the image to the board.
+This section describes the steps required to configure the BIOS and prepare the USB drive for flashing the image to the board.
 
 ## BIOS Settings 
 
-Users must verify that the setting is correct. These should be the
-IFWI\'s default settings.
+Users must verify that the settings are correct. These should be the IFWI\'s default settings.
 
-Press the hotkey (such as F2, DEL, or F12) during startup to access the
-BIOS menu.
+Press the hotkey (such as F2, DEL, or F12) during startup to access the BIOS menu.
 
 ### BIOS Configuration
 
-| Name                     | Menu                                                                 | Setting  |
-|--------------------------|----------------------------------------------------------------------|----------|
-| Intel (VMX) Virtualization | Intel Advanced Menu → CPU Configuration                              | Enabled  |
-| VT-d                     | Intel Advanced Menu → System Agent (SA) Configuration                | Enabled  |
-| Intel® TCC Mode          | Intel Advanced Menu → Intel® Time Coordinated Computing              | Disabled |
-| #AC Split Lock           | Intel Advanced Menu → Intel® Time Coordinated Computing              | Disabled |
-| OnBoard NIC              | Intel Advanced Menu → PCH‑IO configuration → EFI Network             | OnBoard NIC |
+| Name                       | Menu                                                     | Setting     |
+| -------------------------- | -------------------------------------------------------- | ----------- |
+| Intel (VMX) Virtualization | Intel Advanced Menu → CPU Configuration                  | Enabled     |
+| VT-d                       | Intel Advanced Menu → System Agent (SA) Configuration    | Enabled     |
+| Intel® TCC Mode            | Intel Advanced Menu → Intel® Time Coordinated Computing  | Disabled    |
+| #AC Split Lock             | Intel Advanced Menu → Intel® Time Coordinated Computing  | Disabled    |
+| OnBoard NIC                | Intel Advanced Menu → PCH‑IO configuration → EFI Network | OnBoard NIC |
 
 
 > **Note:**
@@ -263,15 +263,11 @@ BIOS menu.
 
 ## Flash Image to USB Drive
 
-There are 2 steps to flash **caas-flashfile-\<\$variant\>.iso.zip** to
-BM. 
+There are two steps to flash **caas-flashfile-\<\$variant\>.iso.zip** to the system. 
 
 ### Step 1: Flash Image to the USB Drive
 
-On a Windows\* machine, use the Rufus application or another tool to
-create a bootable USB stick
-from **caas-flashfile-\<\$variant\>.iso.zip** to USB drive. The Rufus app
-can be downloaded from <https://rufus.ie/en/>
+On a Windows\* machine, use the Rufus application or another tool to create a bootable USB stick from **caas-flashfile-\<\$variant\>.iso.zip** to USB drive. The Rufus app can be downloaded from <https://rufus.ie/en/>
 
 First, extract the caas-flashfile-\<\$variant\>.iso.zip file.
 
@@ -295,7 +291,7 @@ First, extract the caas-flashfile-\<\$variant\>.iso.zip file.
 
 Alternatively, on Ubuntu, you can also use the dd command.
 
-**[IMPORTANT NOTICE]** Replace the /dev/sdc below with the target USB device node name.
+**[IMPORTANT NOTICE]** Replace the /dev/sdc in the following example with the target USB device node name.
 
 ```bash
 unzip caas-flashfile-userdebug.iso.zip
@@ -304,11 +300,11 @@ dd if=./caas-flashfile-userdebug.iso of=/dev/sdc bs=1024M
 
 ```
 
-### Step 2: Flash to BM from USB Stick to Boot up the System to Android
+### Step 2: Boot up the System to Android
 
 1. Insert the USB drive into the board.
 2. Press **F2** while booting the device.
-3. Select the USB drive to boot as shown in below. Navigate to:  
+3. Select the USB drive to boot as shown below. Navigate to:  
    
    **Boot Maintenance → Boot Option Menu → Change Boot Order**
 4. Set the USB drive as the first boot option. Save the changes (**Fn + F4**) and exit the BIOS (select **Continue**).
@@ -349,7 +345,7 @@ cd /home/$USER
 vi /home/$USER/.gitconfig  
 ```
 
-\# Append below lines to .gitconfig file  
+\# Append the following lines to .gitconfig file  
 ```
 [user]  
     email = <your email>  
@@ -409,7 +405,7 @@ if (location != null) {
 
 It is used by manageability applications to statically configure the device location at the time of provisioning.
 
-> Supported only for privileged/system applications.
+> This feature is supported only for privileged/system applications.
 
 ### Required Permission
 
@@ -435,55 +431,34 @@ service.setHalLocation(12.9716, 77.5946);
 | Android* 16 Base BSP Reference Release for Intel® Edge Platforms (supporting Intel® Core™ Processor (14th Gen)) Release Notes |  [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/README.md) |
 | Raptor Lake‑S Refresh Android Manifest File | [GitHub](https://github.com/edge-aosp-bsp/manifest/blob/master/stable-build/A16/) |
 
-Log in to the Resource and Documentation Center
-([rdc.intel.com](https://www.intel.com/content/www/us/en/resources-documentation/developer.html))
-to search for and download the document numbers listed in the following
-table. Contact your Intel field representative for access.
+Log in to the Resource and Documentation Center ([rdc.intel.com](https://www.intel.com/content/www/us/en/resources-documentation/developer.html)) to search for and download the document numbers listed in the following table. Contact your Intel field representative for access.
 
 > **Note:**
 > Third-party links are provided as a reference only. Intel does not control or audit third-party benchmark data or the websites referenced in this document. You should visit the referenced website and confirm whether the referenced data are accurate. 
 
 
-| Documentation on Intel RDC | Document No./Location |
-|---------|------------------------|
-| 13th Gen Intel® Core™ Processors and Intel® Core™ Processors (14th Gen) (Code named Raptor Lake‑S/S Refresh) for Edge Platforms Reference UEFI BIOS/IFWI Version 6311_00 – IFWI Release Notes & Package |  [865275](https://www.intel.com/content/www/us/en/secure/content-details/865275/content-details.html) |
+| Documentation on Intel RDC                                                                                                                                                                              | Document No./Location                                                                                                    |     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | --- |
+| 13th Gen Intel® Core™ Desktop Processors (Code named Raptor Lake-S) and Intel® Core™ Processor (14th Gen) (Code named Raptor Lake-S Refresh) for Edge Platforms Reference UEFI BIOS/IFWI (ver. 7117_51) | [852225](https://www.intel.com/content/www/us/en/secure/design/confidential/software-kits/kit-details.html?kitId=852225) |     |
 
 
 # Disclaimer
 
-You may not use or facilitate the use of this document in connection
-with any infringement or other legal analysis concerning Intel products
-described herein. You agree to grant Intel a non-exclusive, royalty-free
-license to any patent claim thereafter drafted which includes subject
+You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Intel products described herein. You agree to grant Intel a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject
 matter disclosed herein.
 
-No license (express or implied, by estoppel or otherwise) to any
-intellectual property rights is granted by this document.
+No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document.
 
-All information provided here is subject to change without notice.
-Contact your Intel representative to obtain the latest Intel product
-specifications and roadmaps.
+All information provided here is subject to change without notice. Contact your Intel representative to obtain the latest Intel product specifications and roadmaps.
 
-The products described may contain design defects or errors known as
-errata which may cause the product to deviate from published
-specifications. Current characterized errata are available on request.
+The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications. Current characterized errata are available on request.
 
-Copies of documents which have an order number and are referenced in
-this document may be obtained by calling 1-800-548-4725 or visiting the
-[Intel Resource and Documentation
-Center](https://www.intel.com/content/www/us/en/resources-documentation/developer.html).
+Copies of documents which have an order number and are referenced in this document may be obtained by calling 1-800-548-4725 or visiting the [Intel Resource and Documentation Center](https://www.intel.com/content/www/us/en/resources-documentation/developer.html). 
 
-Intel technologies\' features and benefits depend on system
-configuration and may require enabled hardware, software or service
-activation. Performance varies depending on system configuration. No
-product or component can be absolutely secure. Check with your system
-manufacturer or retailer or learn more at
-[intel.com](http://intel.com/).
+Intel technologies\' features and benefits depend on system configuration and may require enabled hardware, software or service activation. Performance varies depending on system configuration. No product or component can be absolutely secure. Check with your system
+manufacturer or retailer or learn more at [intel.com](http://intel.com/).
 
-The Bluetooth® word mark and logos are registered trademarks owned by
-Bluetooth SIG, Inc. and any use of such marks by Intel Corporation is
-under license.
+The Bluetooth® word mark and logos are registered trademarks owned by Bluetooth SIG, Inc. and any use of such marks by Intel Corporation is under license.
 
-© Intel Corporation. Intel, the Intel logo, and other Intel marks are
-trademarks of Intel Corporation or its subsidiaries. Other names and
-brands may be claimed as the property of others.
+© Intel Corporation. Intel, the Intel logo, and other Intel marks are trademarks of Intel Corporation or its subsidiaries. Other names and brands may be claimed as the property of others.
+
